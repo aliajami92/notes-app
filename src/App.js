@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect } from 'react';
+import NotesList from './components/NotesList';
+import Note from './components/Note';
+import GlobalStyle from './style/Global';
+import { Content, AppTitle } from './style/Layout';
+import { useSelector, useDispatch } from 'react-redux';
+import { notesSelector } from './store/note/noteSelectors';
+import { setAllNotes } from './store/note/noteActions';
+import useDidMountEffect from './hooks/useDidMountEffect';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const allNotes = useSelector(notesSelector);
+
+  // Load localStorage notes into state if any on app mount.
+  useEffect(() => {
+    const currentNotes = localStorage.getItem('notes');
+    if (currentNotes) {
+      dispatch(setAllNotes(JSON.parse(currentNotes)));
+    }
+  }, [dispatch]);
+
+  // Update notes state in localStorage.
+  useDidMountEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(allNotes));
+  }, [allNotes]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <GlobalStyle />
+      <AppTitle>Notes App</AppTitle>
+      <Content>
+        <NotesList />
+        <Note />
+      </Content>
+    </Fragment>
   );
-}
+};
 
 export default App;
