@@ -44,6 +44,7 @@ export const ModalBody = styled.section`
     }
     .delete {
       color: white;
+      margin-left: 16px;
       background: ${({ theme }) => theme.colors.danger};
     }
   }

@@ -5,7 +5,7 @@ import AutoComplete from './AutoComplete';
 import { useDispatch } from 'react-redux';
 import { createNote, updateNote } from '../store/note/noteActions';
 import Modal from './Modal';
-import { NoteForm } from '../style/Note';
+import { NoteForm, AppLabel, AppInput } from '../style/Note';
 import { NotesContext } from '../context/Notes.Context';
 import useDidMountEffect from '../hooks/useDidMountEffect';
 import { AiFillFileAdd } from 'react-icons/ai';
@@ -96,11 +96,11 @@ const AddNote = () => {
           </Fragment>
         )}>
         <NoteForm onSubmit={e => e.preventDefault()}>
-          <label htmlFor='title'>
+          <AppLabel htmlFor='title' required={!!errors.title}>
             Title*
-            {errors.title && <span>{errors.title.message}</span>}
-          </label>
-          <input
+          </AppLabel>
+          <AppInput
+            required={!!errors.title}
             type='text'
             name='title'
             id='title'
@@ -110,8 +110,8 @@ const AddNote = () => {
             ref={register({ required: 'required' })}
           />
 
-          <label htmlFor='body'>Note</label>
-          <input
+          <AppLabel htmlFor='body'>Note</AppLabel>
+          <AppInput
             type='text'
             name='body'
             id='body'
@@ -120,7 +120,7 @@ const AddNote = () => {
             placeholder='Note..'
           />
 
-          <label>Tags</label>
+          <AppLabel>Tags</AppLabel>
           <AutoComplete setNote={setNote} setTag={setTag} tag={tag} note={note} />
         </NoteForm>
       </Modal>

@@ -16,20 +16,32 @@ export const NoteForm = styled.form`
   display: flex;
   flex-direction: column;
   height: 100%;
-  label {
-    font-size: 16px;
-    margin-bottom: 8px;
-    &:not(:first-child) {
-      margin-top: 24px;
-    }
-  }
+`;
 
-  input {
-    height: 40px;
-    border: 1px solid lightgray;
-    outline: none;
-    padding: 8px;
+export const AppLabel = styled.label`
+  ${({ required, theme }) =>
+    required &&
+    css`
+      color: ${theme.colors.danger};
+    `}
+
+  font-size: 16px;
+  margin-bottom: 8px;
+  &:not(:first-child) {
+    margin-top: 24px;
   }
+`;
+
+export const AppInput = styled.input`
+  height: 40px;
+  border: 1px solid lightgray;
+  outline: none;
+  padding: 8px;
+  ${({ required, theme }) =>
+    required &&
+    css`
+      border-color: ${theme.colors.danger};
+    `}
 `;
 
 export const List = styled.ul`
