@@ -16,6 +16,20 @@ export const NoteForm = styled.form`
   display: flex;
   flex-direction: column;
   height: 100%;
+  label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    &:not(:first-child) {
+      margin-top: 24px;
+    }
+  }
+
+  input {
+    height: 40px;
+    border: 1px solid lightgray;
+    outline: none;
+    padding: 8px;
+  }
 `;
 
 export const List = styled.ul`

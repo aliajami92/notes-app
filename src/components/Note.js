@@ -55,10 +55,14 @@ const Note = () => {
         <Modal
           show={showModal}
           title='Delete Note'
+          width='400'
+          height='190'
           footer={() => (
             <Fragment>
               <button onClick={() => setShowModal(false)}>Cancel</button>
-              <button onClick={confirmDeleteNote}>Delete</button>
+              <button className='delete' onClick={confirmDeleteNote}>
+                Delete
+              </button>
             </Fragment>
           )}>
           <p>Are you sure you want to delete the selected note?</p>

@@ -16,16 +16,35 @@ export const Container = styled.div`
 `;
 
 export const ModalBody = styled.section`
-  width: 60%;
-  height: 70%;
+  width: ${({ width }) => (width ? `${width}px` : '60%')};
+  height: ${({ height }) => (height ? `${height}px` : '70%')};
   background: white;
   margin: auto;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
   h2 {
     padding-bottom: 16px;
     border-bottom: 1px solid lightgray;
   }
-  div.content {
+  .content {
     padding: 16px 0;
+  }
+  .footer {
+    margin-top: auto;
+    text-align: right;
+    button {
+      padding: 8px 16px;
+      color: ${({ theme }) => theme.colors.danger};
+    }
+    .confirm {
+      color: white;
+      background: ${({ theme }) => theme.colors.primary};
+      margin-left: 16px;
+    }
+    .delete {
+      color: white;
+      background: ${({ theme }) => theme.colors.danger};
+    }
   }
 `;

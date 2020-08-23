@@ -9,7 +9,7 @@ import { NoteForm } from '../style/Note';
 import { NotesContext } from '../context/Notes.Context';
 import useDidMountEffect from '../hooks/useDidMountEffect';
 import { AiFillFileAdd } from 'react-icons/ai';
-import { CreateButton } from '../style/Layout';
+import { CreateButton, AppButton } from '../style/Layout';
 
 const AddNote = () => {
   const dispatch = useDispatch();
@@ -89,8 +89,10 @@ const AddNote = () => {
         show={showModal}
         footer={() => (
           <Fragment>
-            <button onClick={handleSubmit(onSubmit)}>Save</button>
-            <button onClick={handleCloseModal}>Cancel</button>
+            <AppButton onClick={handleCloseModal}>Cancel</AppButton>
+            <AppButton className='confirm' onClick={handleSubmit(onSubmit)}>
+              Save
+            </AppButton>
           </Fragment>
         )}>
         <NoteForm onSubmit={e => e.preventDefault()}>
